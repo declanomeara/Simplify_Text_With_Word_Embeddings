@@ -11,7 +11,7 @@ public class Menu {
 	private String embeddingsFilePath;
 	private String googleFilePath;
 	private String outputFilePath = "./out.txt"; // default unless changed by user
-	private Boolean findMostSimilar = true; // default to finding most similar
+	//private Boolean findMostSimilar = true; // default to finding most similar
 
 	public Menu() {
 		scanner = new Scanner(System.in);
@@ -32,11 +32,11 @@ public class Menu {
 			// case 4 -> enterWordOrText(4);//Dot Product Similarity
 			// case 5 -> enterWordOrText(5);//Euclidean Distance
 			// case 6 -> configureOptions();
-			// case 7 -> getFilePath("word embeddings");
-			// case 7 -> getFilePath("Google 1000");
-			// case 8 -> getFilePath("out");
-			// case 9 -> displayHelp();
-			// case 10 -> keepRunning = false;
+			 case 4 -> getFilePath("word embeddings");
+			 case 5 -> getFilePath("Google 1000");
+			 case 6 -> getFilePath("out");
+			 case 7 -> HelpUtil.displayHelp();
+			 case 8 -> keepRunning = false;
 
 			// used if integer input is greater than options
 			default -> selectionOutOfRange();
@@ -81,20 +81,22 @@ public class Menu {
 		System.out.println("*                                                          *");
 		System.out.println("************************************************************" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify Embedding File" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify Google 1000 File)" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify Google 1000 File" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
 		//System.out.println(ConsoleColour.GREEN_BOLD + "(3) Enter a Word or Text to find Most/Least Similar using Cosine Similarity" + ConsoleColour.RESET);
 		//System.out.println(ConsoleColour.GREEN_BOLD + "(4) Enter a Word or Text to find Most/Least Similar using Dotproduct Similarity" + ConsoleColour.RESET);
 		//System.out.println(ConsoleColour.GREEN_BOLD + "(5) Enter a Word or Text to find Most/Least Similar using Euclidean Similarity" + ConsoleColour.RESET);	
 		//System.out.println(ConsoleColour.GREEN_BOLD + "(6) Toggle between similar and disimilar matching" + ConsoleColour.RESET);	
-		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Display current EmbeddingFilePath information for each options" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Display current Google 100 FilePath" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Display word embedding file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Display Google 100 file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Display output file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Help - Display help information for each options" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Quit" + ConsoleColour.RESET);
 		
 		// Output a menu of options and solicit text from the user
 				System.out.println();
 				System.out.print(ConsoleColour.BLACK_BOLD_BRIGHT);
-				System.out.print("Select Option [1-4]>"  + ConsoleColour.RESET);
+				System.out.print("Select Option [1-8]>"  + ConsoleColour.RESET);
 				System.out.println();
 
 	}
@@ -126,10 +128,10 @@ public class Menu {
 		// set file paths
 		private void setFilePath(String fileType) {
 
-			System.out.print("Enter path to" + fileType +  " file: ");
+			System.out.print("Enter path to " + fileType +  " file: ");
 			String filePath = scanner.next().trim();
 
-			File file = new File(embeddingsFilePath);
+			File file = new File(filePath);
 
 			if (!file.exists()) {
 				MessageUtil.displayMessage("[ERROR] - The " +  fileType + " file doesn't exist at " + filePath,
@@ -138,7 +140,6 @@ public class Menu {
 			}
 			
 			//Assign to appropriate variable
-			
 			if (fileType.equalsIgnoreCase("word embeddings")) {
 				embeddingsFilePath = filePath;
 			} else if (fileType.equalsIgnoreCase("Google 1000")) {
