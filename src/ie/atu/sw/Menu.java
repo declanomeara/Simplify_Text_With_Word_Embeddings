@@ -11,6 +11,7 @@ public class Menu {
 	private String embeddingsFilePath;
 	private String googleFilePath;
 	private String outputFilePath = "./out.txt"; // default unless changed by user
+	private String textToSimplifyPath;
 	// private Boolean findMostSimilar = true; // default to finding most similar
 
 	public Menu() {
@@ -27,16 +28,17 @@ public class Menu {
 			switch (choice) {
 			case 1 -> setFilePath("word embeddings");
 			case 2 -> setFilePath("Google 1000");
-			case 3 -> setOutputFilepath();
+			case 3 -> setFilePath("text file to simplify");
+			case 4 -> setOutputFilepath();
 			// case 3 -> enterWordOrText(3);//Cosine Similarity
 			// case 4 -> enterWordOrText(4);//Dot Product Similarity
 			// case 5 -> enterWordOrText(5);//Euclidean Distance
 			// case 6 -> configureOptions();
-			case 4 -> getFilePath("word embeddings");
-			case 5 -> getFilePath("Google 1000");
-			case 6 -> getFilePath("out");
-			case 7 -> HelpUtil.displayHelp();
-			case 8 -> keepRunning = false;
+			case 5 -> getFilePath("word embeddings");
+			case 6 -> getFilePath("Google 1000");
+			case 7 -> getFilePath("out");
+			case 8 -> HelpUtil.displayHelp();
+			case 9 -> keepRunning = false;
 
 			// used if integer input is greater than options
 			default -> selectionOutOfRange();
@@ -56,10 +58,10 @@ public class Menu {
 		System.out.println("*          Virtual Threaded Text Simplifier                *");
 		System.out.println("*                                                          *");
 		System.out.println("************************************************************" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify Embedding File" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify Google 1000 File" + ConsoleColour.RESET);
-		System.out.println(
-				ConsoleColour.GREEN_BOLD + "(3) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify path ofEmbedding File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify path of Google 1000 File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify path of text to simplify File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
 		// System.out.println(ConsoleColour.GREEN_BOLD + "(3) Execute, Analyse and
 		// Report" + ConsoleColour.RESET);
 		// System.out.println(ConsoleColour.GREEN_BOLD + "(4) Optional Extras...y" +
@@ -74,17 +76,18 @@ public class Menu {
 		// find Most/Least Similar using Euclidean Similarity" + ConsoleColour.RESET);
 		// System.out.println(ConsoleColour.GREEN_BOLD + "(6) Toggle between similar and
 		// disimilar matching" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Display word embedding file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Display Google 100 file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Display output file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Help - Display help information for each options"
+		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Display word embedding file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Display Google 100 file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Display output file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Display text to simplify file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help - Display help information for each options"
 				+ ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Quit" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
 
 		// Output a menu of options and solicit text from the user
 		System.out.println();
 		System.out.print(ConsoleColour.BLACK_BOLD_BRIGHT);
-		System.out.print("Select Option [1-8]>" + ConsoleColour.RESET);
+		System.out.print("Select Option [1-10]>" + ConsoleColour.RESET);
 		System.out.println();
 
 	}
@@ -135,7 +138,19 @@ public class Menu {
 			fileparser.loadEmbeddingsFile(filePath);
 			
 		} else if (fileType.equalsIgnoreCase("Google 1000")) {
+			
 			googleFilePath = filePath;
+			
+			fileparser = new FileParser();
+			fileparser.loadGoogleWordsFile(filePath);
+		}
+		
+		else if(fileType.equalsIgnoreCase("text file to simplify")) {
+			
+			textToSimplifyPath = filePath;
+			
+			fileparser = new FileParser();
+			fileparser.loadTextToSimplify(filePath);
 		}
 
 		MessageUtil.displayMessage("[INFO] - " + fileType + " file loaded successfully!", ConsoleColour.BLUE_BOLD);
@@ -161,6 +176,8 @@ public class Menu {
 			filePath = googleFilePath;
 		} else if (fileType.equalsIgnoreCase("output")) {
 			filePath = outputFilePath;
+		} else if (fileType.equalsIgnoreCase("text file to simplify")) {
+			filePath = textToSimplifyPath;
 		} else {
 			MessageUtil.displayMessage("[ERROR] - Unknown file type: " + fileType, ConsoleColour.RED_BOLD);
 			return;
