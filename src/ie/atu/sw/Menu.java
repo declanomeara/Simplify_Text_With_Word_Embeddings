@@ -12,8 +12,7 @@ public class Menu {
 	private String googleFilePath;
 	private String outputFilePath = "./out.txt"; // default unless changed by user
 	private String textToSimplifyPath;
-	// private Boolean findMostSimilar = true; // default to finding most similar
-
+	
 	public Menu() {
 		scanner = new Scanner(System.in);
 
@@ -58,30 +57,16 @@ public class Menu {
 		System.out.println("*          Virtual Threaded Text Simplifier                *");
 		System.out.println("*                                                          *");
 		System.out.println("************************************************************" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify path ofEmbedding File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify path of Embedding File" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify path of Google 1000 File" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify path of text to simplify File" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(3) Execute, Analyse and
-		// Report" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(4) Optional Extras...y" +
-		// ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(5) Enter a Word or Text to
-		// find Most/Least Similar using Euclidean Similarity" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(3) Enter a Word or Text to
-		// find Most/Least Similar using Cosine Similarity" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(4) Enter a Word or Text to
-		// find Most/Least Similar using Dotproduct Similarity" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(5) Enter a Word or Text to
-		// find Most/Least Similar using Euclidean Similarity" + ConsoleColour.RESET);
-		// System.out.println(ConsoleColour.GREEN_BOLD + "(6) Toggle between similar and
-		// disimilar matching" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Execute, Analyse and Report" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Display word embedding file path" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Display Google 100 file path" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Display output file path" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Display text to simplify file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help - Display help information for each options"
-				+ ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help - Display help information for each options"+ ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
 
 		// Output a menu of options and solicit text from the user
