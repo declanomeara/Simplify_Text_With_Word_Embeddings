@@ -4,6 +4,7 @@ public class HelpUtil {
 
 	// Help menu options
 	public static void displayHelp() {
+		
 		System.out.println();
 		System.out.println();
 		System.out.println(ConsoleColour.BLUE_BOLD + "********************************************************");
@@ -12,49 +13,44 @@ public class HelpUtil {
 		System.out.println();
 
 		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify Embedding File" + ConsoleColour.RESET);
-		System.out.println("    - Sets the file path for the word embeddings file to be used by the application.");
-		System.out.println();
+        System.out.println("    - Sets the file path for the word embeddings file to be used by the application.");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify an Output File" + ConsoleColour.RESET);
-		System.out.println(
-				"    - Sets the file path for the output file where results will be saved (default is ./out.txt).");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify Google-1000 Words File" + ConsoleColour.RESET);
+        System.out.println("    - Sets the file path for the Google-1000 words file used for simplification.");
+        System.out.println();
 
-		System.out.println(
-				ConsoleColour.GREEN_BOLD + "(3) Find Most/Least Similar (Cosine Similarity)" + ConsoleColour.RESET);
-		System.out.println("    - Enter a word or text to find the most/least similar words using cosine similarity.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify Text File to Simplify" + ConsoleColour.RESET);
+        System.out.println("    - Sets the file path for the input text file that needs to be simplified.");
+        System.out.println();
 
-		System.out
-				.println(ConsoleColour.GREEN_BOLD + "(4) Find Most/Least Similar (Dot Product)" + ConsoleColour.RESET);
-		System.out.println(
-				"    - Enter a word or text to find the most/least similar words using dot product similarity.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(4) Specify an Output File" + ConsoleColour.RESET);
+        System.out.println("    - Sets the file path for the output file where simplified text will be saved (default is ./out.txt).");
+        System.out.println();
 
-		System.out.println(
-				ConsoleColour.GREEN_BOLD + "(5) Find Most/Least Similar (Euclidean Distance)" + ConsoleColour.RESET);
-		System.out.println("    - Enter a word or text to find the most/least similar words using Euclidean distance.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Method" + ConsoleColour.RESET);
+        System.out.println("    - Choose the similarity measure to use: Cosine Similarity, Dot Product, Euclidean Distance, or Manhattan Distance.");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Toggle Similarity Mode" + ConsoleColour.RESET);
-		System.out.println("    - Switch between finding the most or least similar words.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(6) Select Output Strategy" + ConsoleColour.RESET);
+        System.out.println("    - Choose how the results will be saved or displayed (e.g., plain text, JSON).");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Show Embedding File Path" + ConsoleColour.RESET);
-		System.out.println("    - Display the current path of the word embeddings file.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(7) Execute Text Simplification" + ConsoleColour.RESET);
+        System.out.println("    - Processes the input text file and generates the simplified text based on the selected similarity measure and output strategy.");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Show Output File Path" + ConsoleColour.RESET);
-		System.out.println("    - Display the current path of the output file.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(8) Show Current File Paths" + ConsoleColour.RESET);
+        System.out.println("    - Displays the current paths for the word embeddings file, Google-1000 file, text file to simplify, and output file.");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help" + ConsoleColour.RESET);
-		System.out.println("    - Show this help information.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help" + ConsoleColour.RESET);
+        System.out.println("    - Displays this help information.");
+        System.out.println();
 
-		System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
-		System.out.println("    - Exits the application.");
-		System.out.println();
+        System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
+        System.out.println("    - Exits the application.");
+        System.out.println();
 	}
 
 }

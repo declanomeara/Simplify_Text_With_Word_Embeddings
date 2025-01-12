@@ -1,20 +1,24 @@
 package ie.atu.sw;
 
 import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
 	private Scanner scanner;
 	private boolean keepRunning = true;
-	private FileParser fileparser;
+	private FileParser fileParser;
 	private String embeddingsFilePath;
 	private String googleFilePath;
 	private String outputFilePath = "./out.txt"; // default unless changed by user
 	private String textToSimplifyPath;
-	
+	private SimilarityMeasure similarityMeasure;
+	private OutputStrategy outputStrategy = new FileAndConsoleOutput(); // Default output strategy
+
 	public Menu() {
 		scanner = new Scanner(System.in);
+		this.fileParser = new FileParser();
 
 	}
 
@@ -27,17 +31,14 @@ public class Menu {
 			switch (choice) {
 			case 1 -> setFilePath("word embeddings");
 			case 2 -> setFilePath("Google 1000");
-			case 3 -> setFilePath("text file to simplify");
+			case 3 -> setFilePath("text to simplify");
 			case 4 -> setOutputFilepath();
-			// case 3 -> enterWordOrText(3);//Cosine Similarity
-			// case 4 -> enterWordOrText(4);//Dot Product Similarity
-			// case 5 -> enterWordOrText(5);//Euclidean Distance
-			// case 6 -> configureOptions();
-			case 5 -> getFilePath("word embeddings");
-			case 6 -> getFilePath("Google 1000");
-			case 7 -> getFilePath("out");
-			case 8 -> HelpUtil.displayHelp();
-			case 9 -> keepRunning = false;
+			case 5 -> selectSimilarityMeasure();
+			case 6 -> executeTextSimplification();
+			case 7 -> selectOutputStrategy();
+			case 8 -> showCurrentFilePaths();
+			case 9 -> HelpUtil.displayHelp();
+			case 10 -> keepRunning = false;
 
 			// used if integer input is greater than options
 			default -> selectionOutOfRange();
@@ -57,15 +58,14 @@ public class Menu {
 		System.out.println("*          Virtual Threaded Text Simplifier                *");
 		System.out.println("*                                                          *");
 		System.out.println("************************************************************" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify path of Embedding File" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify path of Google 1000 File" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify path of text to simplify File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(1) Specify file path of wordembedding File" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify file path of Google 1000 words" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify file path of text to simplify " + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Execute, Analyse and Report" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Display word embedding file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Display Google 100 file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Display output file path" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Display text to simplify file path" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Method" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Execute Text Simplification" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Select Output Strategy" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Show Current File Paths" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(9) Help - Display help information for each options"+ ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(10) Quit" + ConsoleColour.RESET);
 
@@ -76,8 +76,6 @@ public class Menu {
 		System.out.println();
 
 	}
-
-	// Menu methods
 
 	// Check to make sure integer selected
 	private int getUserInput() {
@@ -114,28 +112,22 @@ public class Menu {
 			return; // Exit if the file doesn't exist
 		}
 
-		// Assign to appropriate variable
-		if (fileType.equalsIgnoreCase("word embeddings")) {
-			
+		// Assign to correct variable
+		switch (fileType.toLowerCase()) {
+		case "word embeddings" -> {
 			embeddingsFilePath = filePath;
-			
-			fileparser = new FileParser();
-			fileparser.loadEmbeddingsFile(filePath);
-			
-		} else if (fileType.equalsIgnoreCase("Google 1000")) {
-			
-			googleFilePath = filePath;
-			
-			fileparser = new FileParser();
-			fileparser.loadGoogleWordsFile(filePath);
+			fileParser.loadEmbeddingsFile(filePath);
 		}
-		
-		else if(fileType.equalsIgnoreCase("text file to simplify")) {
-			
+		case "google 1000" -> {
+			googleFilePath = filePath;
+			fileParser.loadGoogleWordsFile(filePath);
+		}
+		case "text to simplify" -> {
 			textToSimplifyPath = filePath;
-			
-			fileparser = new FileParser();
-			fileparser.loadTextToSimplify(filePath);
+			fileParser.loadTextToSimplify(filePath);
+		}
+		default -> MessageUtil.displayMessage("[ERROR] Unknown file type.", ConsoleColour.RED_BOLD);
+		
 		}
 
 		MessageUtil.displayMessage("[INFO] - " + fileType + " file loaded successfully!", ConsoleColour.BLUE_BOLD);
@@ -152,24 +144,107 @@ public class Menu {
 		MessageUtil.displayMessage("[INFO] - Output filepath set sucessfully", ConsoleColour.BLUE_BOLD);
 	}
 
-	// get file path
-	public void getFilePath(String fileType) {
-		String filePath;
-		if (fileType.equalsIgnoreCase("word embeddings")) {
-			filePath = embeddingsFilePath;
-		} else if (fileType.equalsIgnoreCase("Google 1000")) {
-			filePath = googleFilePath;
-		} else if (fileType.equalsIgnoreCase("output")) {
-			filePath = outputFilePath;
-		} else if (fileType.equalsIgnoreCase("text file to simplify")) {
-			filePath = textToSimplifyPath;
-		} else {
-			MessageUtil.displayMessage("[ERROR] - Unknown file type: " + fileType, ConsoleColour.RED_BOLD);
+	// Display current file paths
+	public void showCurrentFilePaths() {
+		System.out.println();
+		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************");
+		System.out.println("*                     Current File Paths                   *");
+		System.out.println("************************************************************" + ConsoleColour.RESET);
+
+		System.out.println("Word Embeddings File Path: " + (embeddingsFilePath != null ? embeddingsFilePath
+				: ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+
+		System.out.println("Google-1000 Words File Path: "
+				+ (googleFilePath != null ? googleFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+
+		System.out.println("Text-to-Simplify File Path: " + (textToSimplifyPath != null ? textToSimplifyPath
+				: ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+
+		System.out.println("Output File Path: "
+				+ (outputFilePath != null ? outputFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+
+		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************"
+				+ ConsoleColour.RESET);
+	}
+	
+	public void setOutputStrategy(OutputStrategy strategy) {
+		this.outputStrategy = strategy;
+		MessageUtil.displayMessage("[INFO] Output strategy set to: " + strategy.getClass().getSimpleName(),
+				ConsoleColour.BLUE_BOLD);
+	}
+
+	private void selectSimilarityMeasure() {
+		System.out.println(ConsoleColour.GREEN_BOLD + """
+				Select Similarity Measure:
+				(1) Cosine Similarity
+				(2) Dot Product Similarity
+				(3) Euclidean Distance Similarity
+				(4) Manhattan Distance Similarity
+				""" + ConsoleColour.RESET);
+		System.out.print("Enter your choice: ");
+		int choice = getUserInput();
+
+		similarityMeasure = switch (choice) {
+		case 1 -> new CosineSimilarity();
+		case 2 -> new DotProductSimilarity();
+		case 3 -> new EuclideanDistanceSimilarity();
+		case 4 -> new ManhattanDistanceSimilarity();
+		default -> {
+			MessageUtil.displayMessage("[ERROR] Invalid choice. Defaulting to Cosine Similarity.",
+					ConsoleColour.RED_BOLD);
+			yield new CosineSimilarity();
+		}
+		};
+
+		MessageUtil.displayMessage("[INFO] Similarity Measure set successfully.", ConsoleColour.BLUE_BOLD);
+	}
+	
+	private void selectOutputStrategy() {
+	    System.out.println(ConsoleColour.GREEN_BOLD + """
+	        Select Output Strategy:
+	        (1) File and Console Output
+	        (2) JSON Output
+	        """ + ConsoleColour.RESET);
+	    System.out.print("Enter your choice: ");
+	    int choice = getUserInput();
+
+	    switch (choice) {
+	        case 1 -> setOutputStrategy(new FileAndConsoleOutput());
+	        case 2 -> setOutputStrategy(new JsonOutputStrategy());
+	        default -> MessageUtil.displayMessage("[ERROR] Invalid choice. Defaulting to File and Console Output.", ConsoleColour.RED_BOLD);
+	    }
+	}
+
+
+	private void executeTextSimplification() {
+		if (embeddingsFilePath == null || googleFilePath == null || textToSimplifyPath == null) {
+			MessageUtil.displayMessage("[ERROR] Ensure all required files are loaded before executing.",
+					ConsoleColour.RED_BOLD);
 			return;
 		}
 
-		MessageUtil.displayMessage("[INFO] - Current filepath for " + fileType + " file is: " + filePath,
-				ConsoleColour.BLUE_BOLD);
+		if (similarityMeasure == null) {
+			MessageUtil.displayMessage("[ERROR] Select a similarity measure before executing.", ConsoleColour.RED_BOLD);
+			return;
+		}
+
+		try {
+			List<String> textLines = fileParser.loadTextToSimplify(textToSimplifyPath);
+
+			TextSimplifier simplifier = new TextSimplifier(fileParser.getEmbeddings(), fileParser.getGoogleWords(),
+					similarityMeasure);
+
+			List<String> simplifiedText = simplifier.simplifyText(textLines);
+
+			for (String line : simplifiedText) {
+				outputStrategy.outPutTopMatch(line, 0.0, outputFilePath, 0);
+			}
+
+			MessageUtil.displayMessage("[INFO] Text simplification completed successfully.", ConsoleColour.GREEN_BOLD);
+
+		} catch (Exception e) {
+			MessageUtil.displayMessage("[ERROR] Text simplification failed: " + e.getMessage(), ConsoleColour.RED_BOLD);
+		}
 	}
 
 }

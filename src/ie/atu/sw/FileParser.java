@@ -3,8 +3,10 @@ package ie.atu.sw;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,13 +16,13 @@ public class FileParser {
 	// Thread-safe map to store word embeddings
 	private final ConcurrentHashMap<String, float[]> embeddings;
 	private final int VECTOR_LENGTH = 50; // Embedding vector length
-	private final Set<String> googleWords; // Google-1000 words
+	private final Map<String, float[]> googleWordEmbeddings; // Google-1000 words
 	private final List<String> textToSimplify; // Text to simplify, stored line-by-line
 
 	// Constructor initializes data structures
 	public FileParser() {
 		this.embeddings = new ConcurrentHashMap<>();
-		this.googleWords = new HashSet<>();
+		this.googleWordEmbeddings = new HashMap<>();
 		this.textToSimplify = new ArrayList<>();
 	}
 
@@ -64,34 +66,48 @@ public class FileParser {
 
 	// load the google-100 file and parse it to a HashSet Data structure
 	public void loadGoogleWordsFile(String filePath) {
+		
+		Set<String> googleWords = new HashSet<String>();
+		//Map<String, float[]> googleWordEmbeddings = new HashMap<>();
+
 		try (var reader = Files.newBufferedReader(Path.of(filePath))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				googleWords.add(line.trim());
+				String word = line.trim();
+				googleWords.add(word);
+
+				// Get vector for google word from embeddings map
+
+				if (embeddings.containsKey(word)) {
+					this.googleWordEmbeddings.put(word, embeddings.get(word));
+				}
 			}
 
 		} catch (Exception e) {
 			System.err.println("Error loading Google-1000 file: " + e.getMessage());
 			throw new RuntimeException(e);
 		}
-
+		System.out.println();
 		System.out.println("Loaded " + googleWords.size() + " words from Google-1000 file.");
+		System.out.println("Mapped " + googleWordEmbeddings.size() + " Google words to embeddings.");
 	}
 
 	// load the text to simplify file and parse it to an ArrayList
-	public void loadTextToSimplify(String filePath) {
-		try (var reader = Files.newBufferedReader(Path.of(filePath))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				textToSimplify.add(line.trim());
-			}
+	public List<String> loadTextToSimplify(String filePath) {
+	   this.textToSimplify.clear();
 
-		} catch (Exception e) {
-			System.err.println("Error loading text file: " + e.getMessage());
-			throw new RuntimeException(e);
-		}
+	    try (var reader = Files.newBufferedReader(Path.of(filePath))) {
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            this.textToSimplify.add(line.trim());
+	        }
+	    } catch (Exception e) {
+	        System.err.println("Error loading text file: " + e.getMessage());
+	        throw new RuntimeException(e);
+	    }
 
-		System.out.println("Loaded " + textToSimplify.size() + " lines of text to simplify.");
+	    System.out.println("Loaded " + textToSimplify.size() + " lines of text to simplify.");
+	    return textToSimplify; // Return the parsed list
 	}
 
 	/**
@@ -128,15 +144,16 @@ public class FileParser {
 	// Getters for the parsed Data, hooks for consumption
 
 	public ConcurrentHashMap<String, float[]> getEmbeddings() {
-		return embeddings;
+		return this.embeddings;
 	}
 
-	public Set<String> getGoogleWords() {
-		return googleWords;
+	public Map<String, float[]> getGoogleWords() {
+		return this.googleWordEmbeddings;
 	}
+	
 
 	public List<String> getTextToSimpify() {
-		return textToSimplify;
+		return this.textToSimplify;
 	}
 
 }
