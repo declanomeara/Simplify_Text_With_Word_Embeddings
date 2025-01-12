@@ -150,21 +150,11 @@ public class Menu {
 		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************");
 		System.out.println("*                     Current File Paths                   *");
 		System.out.println("************************************************************" + ConsoleColour.RESET);
-
-		System.out.println("Word Embeddings File Path: " + (embeddingsFilePath != null ? embeddingsFilePath
-				: ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
-
-		System.out.println("Google-1000 Words File Path: "
-				+ (googleFilePath != null ? googleFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
-
-		System.out.println("Text-to-Simplify File Path: " + (textToSimplifyPath != null ? textToSimplifyPath
-				: ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
-
-		System.out.println("Output File Path: "
-				+ (outputFilePath != null ? outputFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
-
-		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************"
-				+ ConsoleColour.RESET);
+		System.out.println("Word Embeddings File Path: " + (embeddingsFilePath != null ? embeddingsFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+		System.out.println("Google-1000 Words File Path: " + (googleFilePath != null ? googleFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+		System.out.println("Text-to-Simplify File Path: " + (textToSimplifyPath != null ? textToSimplifyPath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+		System.out.println("Output File Path: " + (outputFilePath != null ? outputFilePath : ConsoleColour.RED_BOLD + "Not Set" + ConsoleColour.RESET));
+		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************"+ ConsoleColour.RESET);
 	}
 	
 	public void setOutputStrategy(OutputStrategy strategy) {
@@ -223,29 +213,35 @@ public class Menu {
 					ConsoleColour.RED_BOLD);
 			return;
 		}
-
-		if (similarityMeasure == null) {
-			MessageUtil.displayMessage("[ERROR] Select a similarity measure before executing.", ConsoleColour.RED_BOLD);
-			return;
-		}
-
 		try {
-			List<String> textLines = fileParser.loadTextToSimplify(textToSimplifyPath);
+			List<String> textLines = fileParser.getTextToSimpify();
 
 			TextSimplifier simplifier = new TextSimplifier(fileParser.getEmbeddings(), fileParser.getGoogleWords(),
 					similarityMeasure);
 
 			List<String> simplifiedText = simplifier.simplifyText(textLines);
 
-			for (String line : simplifiedText) {
-				outputStrategy.outPutTopMatch(line, 0.0, outputFilePath, 0);
-			}
+			// Retrieve the counters from TextSimplifier
+			int wordsToSimplify = simplifier.getWordsToSimplify();
+			int wordsInGoogle1000 = simplifier.getWordsInGoogle1000();
+			int wordsNotInEmbeddings = simplifier.getWordsNotInEmbeddings();
+			
+			
+			outputStrategy.outputResult(
+		            String.join("\n", textLines),
+		            String.join("\n", simplifiedText),
+		            similarityMeasure.getSimilarityMethod(),
+		            wordsToSimplify,
+		            wordsInGoogle1000,
+		            wordsNotInEmbeddings,
+		            outputFilePath
+		        );
 
-			MessageUtil.displayMessage("[INFO] Text simplification completed successfully.", ConsoleColour.GREEN_BOLD);
+		        MessageUtil.displayMessage("[INFO] Text simplification completed successfully.", ConsoleColour.GREEN_BOLD);
 
-		} catch (Exception e) {
-			MessageUtil.displayMessage("[ERROR] Text simplification failed: " + e.getMessage(), ConsoleColour.RED_BOLD);
-		}
+		    } catch (Exception e) {
+		        MessageUtil.displayMessage("[ERROR] Text simplification failed: " + e.getMessage(), ConsoleColour.RED_BOLD);
+		    }
 	}
 
 }

@@ -12,5 +12,10 @@ public class ManhattanDistanceSimilarity implements SimilarityMeasure {
 
         return -sum; // Negate for consistency (higher is better)
 	}
+
+	@Override
+	public SimilarityMethod getSimilarityMethod() {
+		return SimilarityMethod.MANHATTAN;
+	}
 	
 }

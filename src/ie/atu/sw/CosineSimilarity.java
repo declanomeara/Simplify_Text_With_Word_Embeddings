@@ -19,4 +19,10 @@ public class CosineSimilarity implements SimilarityMeasure {
 		return dotProduct / (Math.sqrt(normVector1) * Math.sqrt(normVector2));
 	}
 
+	@Override
+	public SimilarityMethod getSimilarityMethod() {
+		
+		return SimilarityMethod.COSINE;
+	}
+
 }

@@ -12,4 +12,9 @@ public class EuclideanDistanceSimilarity implements SimilarityMeasure {
 		return Math.sqrt(sum);// Return negative for consistency (higher is better)
 	}
 
+	@Override
+	public SimilarityMethod getSimilarityMethod() {
+		return SimilarityMethod.EUCLIDEAN;
+	}
+
 }

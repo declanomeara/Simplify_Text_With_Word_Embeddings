@@ -13,4 +13,9 @@ public class DotProductSimilarity implements SimilarityMeasure {
         return dotProduct;
     }
 
+	@Override
+	public SimilarityMethod getSimilarityMethod() {
+		return SimilarityMethod.DOT_PRODUCT;
+	}
+
 }
