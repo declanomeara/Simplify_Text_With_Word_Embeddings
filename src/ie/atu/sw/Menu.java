@@ -174,6 +174,7 @@ public class Menu {
 	}
 
 	private void selectSimilarityMeasure() {
+		System.out.println();
 		System.out.println(ConsoleColour.GREEN_BOLD + """
 				Select Similarity Measure:
 				(1) Cosine Similarity
