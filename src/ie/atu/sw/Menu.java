@@ -19,6 +19,7 @@ public class Menu {
 	public Menu() {
 		scanner = new Scanner(System.in);
 		this.fileParser = new FileParser();
+		this.similarityMeasure = new CosineSimilarity(); // Default similarity measure
 
 	}
 
@@ -213,6 +214,12 @@ public class Menu {
 					ConsoleColour.RED_BOLD);
 			return;
 		}
+		if (similarityMeasure == null) {
+            MessageUtil.displayMessage("[ERROR] Similarity measure not set. Please select a similarity measure.",
+                    ConsoleColour.RED_BOLD);
+            return;
+        }
+		
 		try {
 			List<String> textLines = fileParser.getTextToSimpify();
 
