@@ -1,11 +1,8 @@
 
 package ie.atu.sw;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JsonOutputStrategy implements OutputStrategy {
 

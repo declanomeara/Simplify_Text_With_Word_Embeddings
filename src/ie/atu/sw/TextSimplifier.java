@@ -60,7 +60,7 @@ public class TextSimplifier {
 
 	private String findClosestWord(String targetWord) {
         float[] targetVector = embeddings.get(targetWord); // Get the vector of the target word
-        double maxSimilarity = Double.NEGATIVE_INFINITY; // Initialize max similarity
+        double maxSimilarity = Double.NEGATIVE_INFINITY; // set to most minimum number to start
         String closestWord = null;
 
         for (Map.Entry<String, float[]> entry : googleWordEmbeddings.entrySet()) {
