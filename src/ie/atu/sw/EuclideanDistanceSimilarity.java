@@ -1,6 +1,6 @@
 package ie.atu.sw;
 
-public class EuclideanDistanceSimilarity implements SimilarityMeasure {
+public class EuclideanDistanceSimilarity implements SimilarityStrategy {
 
 	@Override
 	public double calculate(float[] vector1, float[] vector2) {
@@ -13,8 +13,8 @@ public class EuclideanDistanceSimilarity implements SimilarityMeasure {
 	}
 
 	@Override
-	public SimilarityMethod getSimilarityMethod() {
-		return SimilarityMethod.EUCLIDEAN;
+	public SimilarityCalculationType getCalculationType() {
+		return SimilarityCalculationType.EUCLIDEAN;
 	}
 
 }

@@ -22,5 +22,19 @@ public class MessageUtil {
 			System.out.println(border + ConsoleColour.RESET);
 			System.out.println();
 		}
+		
+		public static String paddingHeaderHelper(String header) {
+			
+			StringBuilder sb = new StringBuilder();
+			int borderLength = header.length() + 4; // 4 extra characters for padding
+
+			// Pad out the header 
+			for (int i = 0; i < borderLength; i++) {
+				sb.append('-');
+			}
+			
+			return sb.toString();
+
+		}
 
 }

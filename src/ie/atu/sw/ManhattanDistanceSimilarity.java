@@ -1,6 +1,6 @@
 package ie.atu.sw;
 
-public class ManhattanDistanceSimilarity implements SimilarityMeasure {
+public class ManhattanDistanceSimilarity implements SimilarityStrategy {
 
 	@Override
 	public double calculate(float[] vector1, float[] vector2) {
@@ -14,8 +14,8 @@ public class ManhattanDistanceSimilarity implements SimilarityMeasure {
 	}
 
 	@Override
-	public SimilarityMethod getSimilarityMethod() {
-		return SimilarityMethod.MANHATTAN;
+	public SimilarityCalculationType getCalculationType() {
+		return SimilarityCalculationType.MANHATTAN;
 	}
 	
 }

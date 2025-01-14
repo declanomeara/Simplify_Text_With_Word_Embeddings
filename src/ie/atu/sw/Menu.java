@@ -13,13 +13,13 @@ public class Menu {
 	private String googleFilePath;
 	private String outputFilePath = "./out.txt"; // default unless changed by user
 	private String textToSimplifyPath;
-	private SimilarityMeasure similarityMeasure;
+	private SimilarityStrategy calculationStrategy;
 	private OutputStrategy outputStrategy = new FileAndConsoleOutput(); // Default output strategy
 
 	public Menu() {
 		scanner = new Scanner(System.in);
 		this.fileParser = new FileParser();
-		this.similarityMeasure = new CosineSimilarity(); // Default similarity measure
+		this.calculationStrategy = new CosineSimilarity(); // Default similarity measure
 
 	}
 
@@ -34,7 +34,7 @@ public class Menu {
 			case 2 -> setFilePath("Google 1000");
 			case 3 -> setFilePath("text to simplify");
 			case 4 -> setOutputFilepath();
-			case 5 -> selectSimilarityMeasure();
+			case 5 -> selectCalculationStrategy();
 			case 6 -> executeTextSimplification();
 			case 7 -> selectOutputStrategy();
 			case 8 -> showCurrentFilePaths();
@@ -63,7 +63,7 @@ public class Menu {
 		System.out.println(ConsoleColour.GREEN_BOLD + "(2) Specify file path of Google 1000 words" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(3) Specify file path of text to simplify " + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(4) Specify an Output File (default: ./out.txt)" + ConsoleColour.RESET);
-		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Method" + ConsoleColour.RESET);
+		System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Calculation Strategy" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(6) Execute Text Simplification" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(7) Select Output Strategy" + ConsoleColour.RESET);
 		System.out.println(ConsoleColour.GREEN_BOLD + "(8) Show Current File Paths" + ConsoleColour.RESET);
@@ -164,10 +164,10 @@ public class Menu {
 				ConsoleColour.BLUE_BOLD);
 	}
 
-	private void selectSimilarityMeasure() {
+	private void selectCalculationStrategy() {
 		System.out.println();
 		System.out.println(ConsoleColour.GREEN_BOLD + """
-				Select Similarity Measure:
+				Select Similarity Calculation Strategy:
 				(1) Cosine Similarity
 				(2) Dot Product Similarity
 				(3) Euclidean Distance Similarity
@@ -176,7 +176,7 @@ public class Menu {
 		System.out.print("Enter your choice: ");
 		int choice = getUserInput();
 
-		similarityMeasure = switch (choice) {
+		calculationStrategy = switch (choice) {
 		case 1 -> new CosineSimilarity();
 		case 2 -> new DotProductSimilarity();
 		case 3 -> new EuclideanDistanceSimilarity();
@@ -187,8 +187,9 @@ public class Menu {
 			yield new CosineSimilarity();
 		}
 		};
-
-		MessageUtil.displayMessage("[INFO] Similarity Measure set successfully.", ConsoleColour.BLUE_BOLD);
+		
+		SimilarityCalculationType calculationType = calculationStrategy.getCalculationType();
+		MessageUtil.displayMessage("[INFO] Similarity Measure " + calculationType.getDescription() + " set successfully.", ConsoleColour.BLUE_BOLD);
 	}
 	
 	private void selectOutputStrategy() {
@@ -214,7 +215,7 @@ public class Menu {
 					ConsoleColour.RED_BOLD);
 			return;
 		}
-		if (similarityMeasure == null) {
+		if (calculationStrategy == null) {
             MessageUtil.displayMessage("[ERROR] Similarity measure not set. Please select a similarity measure.",
                     ConsoleColour.RED_BOLD);
             return;
@@ -224,7 +225,7 @@ public class Menu {
 			List<String> textLines = fileParser.getTextToSimpify();
 
 			TextSimplifier simplifier = new TextSimplifier(fileParser.getEmbeddings(), fileParser.getGoogleWords(),
-					similarityMeasure);
+					calculationStrategy);
 
 			List<String> simplifiedText = simplifier.simplifyText(textLines);
 
@@ -237,7 +238,7 @@ public class Menu {
 			outputStrategy.outputResult(
 		            String.join("\n", textLines),
 		            String.join("\n", simplifiedText),
-		            similarityMeasure.getSimilarityMethod(),
+		            calculationStrategy.getCalculationType(),
 		            wordsToSimplify,
 		            wordsInGoogle1000,
 		            wordsNotInEmbeddings,

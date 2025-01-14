@@ -1,6 +1,6 @@
 package ie.atu.sw;
 
-public class CosineSimilarity implements SimilarityMeasure {
+public class CosineSimilarity implements SimilarityStrategy {
 
 	@Override
 	public double calculate(float[] vector1, float[] vector2) {
@@ -20,9 +20,9 @@ public class CosineSimilarity implements SimilarityMeasure {
 	}
 
 	@Override
-	public SimilarityMethod getSimilarityMethod() {
+	public SimilarityCalculationType getCalculationType() {
 		
-		return SimilarityMethod.COSINE;
+		return SimilarityCalculationType.COSINE;
 	}
 
 }

@@ -10,7 +10,7 @@ public class JsonOutputStrategy implements OutputStrategy {
 	//https://www.json.org/json-en.html
 	//looked at Google GSON library but decided against due to dependencies and JAR export.
     @Override
-    public void outputResult(String inputText, String simplifiedText, SimilarityMethod similarityMethod,
+    public void outputResult(String inputText, String simplifiedText, SimilarityCalculationType similarityMethod,
             int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeddings, String outputFilePath) {
          	
     	  // Create JSON using StringBuilder

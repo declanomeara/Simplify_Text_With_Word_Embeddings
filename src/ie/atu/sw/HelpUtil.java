@@ -28,8 +28,8 @@ public class HelpUtil {
         System.out.println("    - Sets the file path for the output file where simplified text will be saved (default is ./out.txt).");
         System.out.println();
 
-        System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Method" + ConsoleColour.RESET);
-        System.out.println("    - Choose the similarity measure to use: Cosine Similarity, Dot Product, Euclidean Distance, or Manhattan Distance.");
+        System.out.println(ConsoleColour.GREEN_BOLD + "(5) Select Similarity Calculation Strategy" + ConsoleColour.RESET);
+        System.out.println("    - Choose the similarity strategy to use: Cosine Similarity, Dot Product, Euclidean Distance, or Manhattan Distance.");
         System.out.println();
 
         System.out.println(ConsoleColour.GREEN_BOLD + "(6) Select Output Strategy" + ConsoleColour.RESET);
@@ -37,7 +37,7 @@ public class HelpUtil {
         System.out.println();
 
         System.out.println(ConsoleColour.GREEN_BOLD + "(7) Execute Text Simplification" + ConsoleColour.RESET);
-        System.out.println("    - Processes the input text file and generates the simplified text based on the selected similarity measure and output strategy.");
+        System.out.println("    - Processes the input text file and generates the simplified text based on the selected similarity calculation strategy and output strategy.");
         System.out.println();
 
         System.out.println(ConsoleColour.GREEN_BOLD + "(8) Show Current File Paths" + ConsoleColour.RESET);

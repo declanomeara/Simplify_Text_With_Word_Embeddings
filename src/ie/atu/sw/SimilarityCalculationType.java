@@ -1,6 +1,6 @@
 package ie.atu.sw;
 
-public enum SimilarityMethod {
+public enum SimilarityCalculationType {
 	
 	COSINE("Cosine Similarity"),
     DOT_PRODUCT("Dot Product Similarity"),
@@ -9,7 +9,7 @@ public enum SimilarityMethod {
 
     private final String description;
 
-    SimilarityMethod(String description) {
+    SimilarityCalculationType(String description) {
         this.description = description;
     }
 

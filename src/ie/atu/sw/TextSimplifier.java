@@ -6,7 +6,7 @@ public class TextSimplifier {
 
 	private final Map<String, float[]> embeddings; // Full embeddings map: word -> vector
     private final Map<String, float[]> googleWordEmbeddings; // Google-1000 embeddings: word -> vector
-    private final SimilarityMeasure similarityMeasure; // Strategy for similarity calculations
+    private final SimilarityStrategy similarityMeasure; // Strategy for similarity calculations
 
     private int wordsToSimplify; // Counter for words that needed simplification
     private int wordsInGoogle1000; // Counter for words already in Google-1000
@@ -16,7 +16,7 @@ public class TextSimplifier {
     
 	//constructor
 	public TextSimplifier(Map<String, float[]> embeddings, Map<String, float[]> googleWordEmbeddings,
-			SimilarityMeasure similarityMeasure) {
+			SimilarityStrategy similarityMeasure) {
 		this.embeddings = embeddings;
 		this.googleWordEmbeddings = googleWordEmbeddings;
 		this.similarityMeasure = similarityMeasure;

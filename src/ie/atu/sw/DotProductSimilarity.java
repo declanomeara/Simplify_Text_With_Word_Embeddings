@@ -1,6 +1,6 @@
 package ie.atu.sw;
 
-public class DotProductSimilarity implements SimilarityMeasure {
+public class DotProductSimilarity implements SimilarityStrategy {
 
 	@Override
     public double calculate(float[] vector1, float[] vector2) {
@@ -14,8 +14,8 @@ public class DotProductSimilarity implements SimilarityMeasure {
     }
 
 	@Override
-	public SimilarityMethod getSimilarityMethod() {
-		return SimilarityMethod.DOT_PRODUCT;
+	public SimilarityCalculationType getCalculationType() {
+		return SimilarityCalculationType.DOT_PRODUCT;
 	}
 
 }
