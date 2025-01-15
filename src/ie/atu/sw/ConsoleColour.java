@@ -1,4 +1,27 @@
 package ie.atu.sw;
+/**
+ * The {@code ConsoleColour} class provides ANSI escape codes for styling console output.
+ * <p>
+ * This utility class includes constants for various text styles and colors that can
+ * be used to enhance the appearance of console messages.
+ * </p>
+ *
+ * <h2>Supported Styles and Colors:</h2>
+ * <ul>
+ * <li>Bold and bright text.</li>
+ * <li>Foreground colors like red, green, blue, etc.</li>
+ * <li>Reset to default console style.</li>
+ * </ul>
+ *
+ * <h2>Usage Example:</h2>
+ * <pre>
+ * System.out.println(ConsoleColour.RED_BOLD + "Error Message" + ConsoleColour.RESET);
+ * </pre>
+ *
+ * @author YourName
+ * @version 1.0
+ * @since 1.8
+ */
 
 /*
  * ANSI escape sequences are a standard for controlling cursor location, colour, 
@@ -101,7 +124,9 @@ public enum ConsoleColour {
 	public String colour() { 
 		return toString();
 	}
-	
+	 /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
 	@Override
     public String toString() {
         return CTRL_SEQ_INTRO + this.colour + CTRL_SEQ_END; 
