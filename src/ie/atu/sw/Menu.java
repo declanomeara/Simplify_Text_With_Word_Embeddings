@@ -4,6 +4,31 @@ import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The {@code Menu} class provides the user interface for the text simplifier application.
+ * <p>
+ * It allows users to load files, configure settings, and execute the text simplification process.
+ * </p>
+ *
+ * <h2>Responsibilities:</h2>
+ * <ul>
+ * <li>Display a menu with options for file selection, strategy configuration, and execution.</li>
+ * <li>Handle user input and validate file paths.</li>
+ * <li>Coordinate between different components of the application.</li>
+ * </ul>
+ *
+ * <h2>Menu Options:</h2>
+ * <ul>
+ * <li>Specify file paths for embeddings, Google-1000 words, and input text.</li>
+ * <li>Select output strategies and similarity calculation methods.</li>
+ * <li>Display current configuration and execute the simplification process.</li>
+ * <li>Show help information or exit the application.</li>
+ * </ul>
+ *
+ * @author YourName
+ * @version 1.0
+ * @since 1.8
+ */
 public class Menu {
 
 	private Scanner scanner;
@@ -16,13 +41,21 @@ public class Menu {
 	private SimilarityStrategy calculationStrategy;
 	private OutputStrategy outputStrategy = new FileAndConsoleOutput(); // Default output strategy
 
+	 /**
+     * Constructs a new {@code Menu} instance and initializes default configurations.
+     */
 	public Menu() {
 		scanner = new Scanner(System.in);
 		this.fileParser = new FileParser();
 		this.calculationStrategy = new CosineSimilarity(); // Default similarity measure
 
 	}
-
+	/**
+     * Starts the main menu loop to interact with the user.
+     * <p>
+     * Displays menu options, handles user input, and coordinates the text simplification process.
+     * </p>
+     */
 	// Main loop to display menu options and handle user input
 	public void start() {
 
@@ -51,6 +84,9 @@ public class Menu {
 		MessageUtil.displayMessage("[INFO] Program Exiting...Thank you, Goodbye", ConsoleColour.BLUE_BOLD);
 	}
 
+    /**
+     * Displays the menu options to the user.
+     */
 	private void showMenuOptions() {
 		System.out.println();
 		System.out.println(ConsoleColour.BLACK_BOLD + "************************************************************");
@@ -77,7 +113,11 @@ public class Menu {
 		System.out.println();
 
 	}
-
+	 /**
+     * Retrieves user input for menu selection and ensures valid integer input.
+     *
+     * @return The menu option selected by the user.
+     */
 	// Check to make sure integer selected
 	private int getUserInput() {
 		while (true) {
@@ -92,13 +132,19 @@ public class Menu {
 			}
 		}
 	}
-
+	/**
+     * Handles invalid menu selections.
+     */
 	// If user selected an integer greater than options available
 	private void selectionOutOfRange() {
 
 		MessageUtil.displayMessage("[Error] - Invalid selection", ConsoleColour.RED_BOLD);
 	}
-
+	/**
+     * Prompts the user to set file paths for required inputs.
+     *
+     * @param fileType The type of file to set (e.g., embeddings, Google 1000, text to simplify).
+     */
 	// set file paths
 	private void setFilePath(String fileType) {
 
@@ -135,7 +181,9 @@ public class Menu {
 
 		System.out.println();
 	}
-
+	/**
+     * Sets the output file path for results.
+     */
 	// set results output file path
 	private void setOutputFilepath() {
 
@@ -144,7 +192,9 @@ public class Menu {
 
 		MessageUtil.displayMessage("[INFO] - Output filepath set sucessfully", ConsoleColour.BLUE_BOLD);
 	}
-
+	/**
+     * Displays the current file paths configured in the application.
+     */
 	// Display current file paths
 	public void showCurrentFilePaths() {
 		System.out.println();

@@ -1,8 +1,53 @@
 package ie.atu.sw;
 
-public class HelpUtil {
 
-	// Help menu options
+/**
+ * The {@code HelpUtil} class provides a utility for displaying help information
+ * for the text simplifier application.
+ * <p>
+ * This class outputs a detailed description of menu options and their functionalities.
+ * </p>
+ *
+ * <h2>Usage Example:</h2>
+ * <pre>
+ * HelpUtil.displayHelp();
+ * </pre>
+ *
+ * <h2>Output Details:</h2>
+ * <ul>
+ * <li>Lists all menu options.</li>
+ * <li>Provides descriptions of their functionalities.</li>
+ * <li>Highlights the purpose of each option.</li>
+ * </ul>
+ *
+ * @author YourName
+ * @version 1.0
+ * @since 1.8
+ */
+
+public class HelpUtil {
+	
+	 /**
+     * Displays the help menu for the application.
+     * <p>
+     * The help menu includes detailed explanations for each option available
+     * in the main menu.
+     * </p>
+     *
+     * <h2>Menu Options:</h2>
+     * <ul>
+     * <li><b>Specify Embedding File:</b> Sets the file path for the word embeddings file.</li>
+     * <li><b>Specify Google-1000 Words File:</b> Sets the file path for the Google-1000 words file.</li>
+     * <li><b>Specify Text File to Simplify:</b> Sets the file path for the input text file to simplify.</li>
+     * <li><b>Specify Output File:</b> Sets the output file path (default: ./out.txt).</li>
+     * <li><b>Select Similarity Calculation Strategy:</b> Choose a similarity measure (e.g., Cosine, Dot Product).</li>
+     * <li><b>Select Output Strategy:</b> Define how results will be displayed or saved.</li>
+     * <li><b>Execute Text Simplification:</b> Starts the simplification process.</li>
+     * <li><b>Show Current File Paths:</b> Displays paths for required files.</li>
+     * <li><b>Help:</b> Displays this help menu.</li>
+     * <li><b>Quit:</b> Exits the application.</li>
+     * </ul>
+     */
 	public static void displayHelp() {
 		
 		System.out.println();

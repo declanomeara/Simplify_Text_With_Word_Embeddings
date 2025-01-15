@@ -1,7 +1,25 @@
 package ie.atu.sw;
 
+/**
+ * Utility class for displaying messages with different console colors and formatting.
+ * <p>
+ * This class is used throughout the application to ensure consistent message formatting
+ * and easy customization of console output styles.
+ * </p>
+ *
+ * @author Your Name
+ * @version 1.0
+ * @since 2024
+ */
 public class MessageUtil {
 	
+	
+	 /**
+     * Displays a message to the console with the specified color formatting.
+     *
+     * @param message the message to display
+     * @param color   the color format from {@link ConsoleColour} to apply to the message
+     */
 	//Displays a message with dynamic border and colour styling
 		public static void displayMessage(String message, ConsoleColour colour) {
 			
@@ -22,7 +40,15 @@ public class MessageUtil {
 			System.out.println(border + ConsoleColour.RESET);
 			System.out.println();
 		}
-		
+		/**
+	     * Creates a centered, padded header line with asterisks.
+	     * <p>
+	     * This method is useful for creating visually distinct sections in the console output.
+	     * </p>
+	     *
+	     * @param text the text to center and pad
+	     * @return a string containing the padded header
+	     */
 		public static String paddingHeaderHelper(String header) {
 			
 			StringBuilder sb = new StringBuilder();
