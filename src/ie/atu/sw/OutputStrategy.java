@@ -20,6 +20,12 @@ package ie.atu.sw;
 * <li>{@link JsonOutputStrategy}</li>
 * </ul>
 *
+*
+* @see JsonOutputStrategy
+* @see FileAndConsoleOutput
+* @see TextSimplifier#simplifyText(List)
+*
+*
 * @author YourName
 * @version 1.0
 * @since 1.8

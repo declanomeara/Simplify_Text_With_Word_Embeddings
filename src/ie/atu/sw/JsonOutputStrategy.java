@@ -21,6 +21,10 @@ import java.io.IOException;
  *                       wordsInGoogle1000, wordsNotInEmbeddings, outputFilePath);
  * </pre>
  *
+ * @see OutputStrategy
+ * @see FileAndConsoleOutput
+ * @see TextSimplifier
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

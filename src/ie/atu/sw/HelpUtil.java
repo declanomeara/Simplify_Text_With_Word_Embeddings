@@ -20,6 +20,10 @@ package ie.atu.sw;
  * <li>Highlights the purpose of each option.</li>
  * </ul>
  *
+ * @see Menu
+ * @see ConsoleColour
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

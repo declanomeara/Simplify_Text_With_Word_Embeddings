@@ -7,6 +7,10 @@ package ie.atu.sw;
  * and easy customization of console output styles.
  * </p>
  *
+ * @see ConsoleColour
+ * @see HelpUtil
+ *
+ *
  * @author Your Name
  * @version 1.0
  * @since 2024

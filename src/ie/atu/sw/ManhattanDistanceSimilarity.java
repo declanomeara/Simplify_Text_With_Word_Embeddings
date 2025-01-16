@@ -17,6 +17,15 @@ package ie.atu.sw;
  * double score = manhattan.calculate(vector1, vector2);
  * </pre>
  *
+ *
+ * @see SimilarityStrategy
+ * @see DotProductSimilarity
+ * @see EuclideanDistanceSimilarity
+ * @see ManhattanDistanceSimilarity
+ * @see SimilarityCalculationType#MANHATTAN
+ *
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

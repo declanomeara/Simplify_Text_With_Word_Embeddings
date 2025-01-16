@@ -25,6 +25,14 @@ import java.util.Scanner;
  * <li>Show help information or exit the application.</li>
  * </ul>
  *
+ *
+ * @see FileParser
+ * @see TextSimplifier
+ * @see OutputStrategy
+ * @see SimilarityStrategy
+ * @see HelpUtil#displayHelp()
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

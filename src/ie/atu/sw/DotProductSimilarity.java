@@ -17,6 +17,13 @@ package ie.atu.sw;
  * double score = dotProduct.calculate(vector1, vector2);
  * </pre>
  *
+ * @see SimilarityStrategy
+ * @see DotProductSimilarity
+ * @see EuclideanDistanceSimilarity
+ * @see ManhattanDistanceSimilarity
+ * @see SimilarityCalculationType#DOT_PRODUCT
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

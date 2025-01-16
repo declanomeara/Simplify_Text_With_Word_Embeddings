@@ -16,6 +16,13 @@ package ie.atu.sw;
  * <li>{@link ManhattanDistanceSimilarity}</li>
  * </ul>
  *
+ * @see CosineSimilarity
+ * @see DotProductSimilarity
+ * @see EuclideanDistanceSimilarity
+ * @see ManhattanDistanceSimilarity
+ * @see SimilarityCalculationType
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

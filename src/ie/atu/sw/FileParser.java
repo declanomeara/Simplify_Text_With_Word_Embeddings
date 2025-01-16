@@ -33,6 +33,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * List<String> text = parser.loadTextToSimplify("input.txt");
  * </pre>
  *
+ *@see TextSimplifier
+ *@see SimilarityStrategy
+ *@see OutputStrategy
+ *
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8

@@ -26,6 +26,12 @@ import java.util.*;
  * List<String> simplifiedText = simplifier.simplifyText(Arrays.asList("Some complex text"));
  * </pre>
  *
+ *
+ *
+ *@see SimilarityStrategy
+ *@see FileParser#getEmbeddings()
+ *@see FileParser#getGoogleWords()
+ *
  * @author YourName
  * @version 1.0
  * @since 1.8
