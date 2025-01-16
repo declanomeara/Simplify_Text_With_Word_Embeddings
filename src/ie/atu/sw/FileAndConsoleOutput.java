@@ -21,7 +21,7 @@ import java.io.IOException;
  * 
  * @author Declan O'Meara
  * @version 1.0
- * @since 1.8
+ * @since 21
  * 
  */
 public class FileAndConsoleOutput implements OutputStrategy {

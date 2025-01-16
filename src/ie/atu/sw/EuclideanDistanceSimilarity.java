@@ -20,9 +20,9 @@ package ie.atu.sw;
  * @see SimilarityCalculationType#EUCLIDEAN
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
- * @since 1.8
+ * @since 21
  */
 public class EuclideanDistanceSimilarity implements SimilarityStrategy {
 	
@@ -40,7 +40,7 @@ public class EuclideanDistanceSimilarity implements SimilarityStrategy {
 			sum += Math.pow(vector1[i] - vector2[i], 2);
 		}
 
-		return Math.sqrt(sum);// Return negative for consistency (higher is better)
+		return -Math.sqrt(sum);// Return negative for consistency (higher is better)
 	}
 	/**
      * Retrieves the type of similarity calculation implemented.

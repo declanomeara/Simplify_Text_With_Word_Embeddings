@@ -18,9 +18,9 @@ package ie.atu.sw;
  * System.out.println(ConsoleColour.RED_BOLD + "Error Message" + ConsoleColour.RESET);
  * </pre>
  *
- * @author YourName
+ * @author Dr John Healy
  * @version 1.0
- * @since 1.8
+ * @since 21
  */
 
 /*

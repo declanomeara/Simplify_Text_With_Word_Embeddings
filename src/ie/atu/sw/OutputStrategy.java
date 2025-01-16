@@ -28,7 +28,7 @@ package ie.atu.sw;
 *
 * @author Declan O'Meara
 * @version 1.0
-* @since 1.8
+* @since 21
 */
 public interface OutputStrategy {
 	/**
