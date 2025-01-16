@@ -4,10 +4,40 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+/**
+ * Implementation of {@link OutputStrategy} that writes results to both console and file.
+ * Provides formatted output with headers, content, and processing summaries.
+ * 
+ * <p>The output includes:
+ * <ul>
+ * <li>Input and simplified text with formatted headers</li>
+ * <li>Similarity method used for processing</li>
+ * <li>Statistical summary of word processing</li>
+ * </ul>
+ * 
+ * @see OutputStrategy
+ * @see MessageUtil
+ * 
+ * @author Declan O'Meara
+ * @version 1.0
+ * @since 1.8
+ * 
+ */
 public class FileAndConsoleOutput implements OutputStrategy {
 	
-	
-
+	 /**
+     * Outputs the text simplification results to both console and file.
+     * Formats the output with headers and statistical summary.
+     * 
+     * @param inputText          The original input text
+     * @param simplifiedText     The simplified version of the text
+     * @param similarityMethod   The similarity calculation method used
+     * @param wordsToSimplify    Count of words that needed simplification
+     * @param wordsInGoogle1000  Count of words found in Google-1000
+     * @param wordsNotInEmbeding Count of words not found in embeddings
+     * @param outputFilePath     Path to output file
+     */
 	@Override
 	public void outputResult(String inputText, String simplifiedText, SimilarityCalculationType similarityMethod,
 			int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeding, String outputFilePath) {
@@ -47,6 +77,13 @@ public class FileAndConsoleOutput implements OutputStrategy {
 	}
 
 	// Helper method to print headers to both console and file
+	 /**
+     * Prints formatted headers to both console and file output.
+     * 
+     * @param bw                The BufferedWriter for file output
+     * @param similarityMethod  The similarity method used
+     * @throws IOException if there's an error writing to file
+     */
 	private void printConsoleAndFileHeader(BufferedWriter bw, SimilarityCalculationType similarityMethod) throws IOException {
 		
 		// Console output
@@ -61,6 +98,15 @@ public class FileAndConsoleOutput implements OutputStrategy {
 	}
 
 	// Helper method to print the processing summary
+	/**
+     * Prints processing statistics summary to both console and file.
+     * 
+     * @param bw                   The BufferedWriter for file output
+     * @param wordsToSimplify      Count of words that needed simplification
+     * @param wordsInGoogle1000    Count of words found in Google-1000
+     * @param wordsNotInEmbedding  Count of words not found in embeddings
+     * @throws IOException if there's an error writing to file
+     */
 	private void printProcessingSummary(BufferedWriter bw, int wordsToSimplify, int wordsInGoogle1000,
 			int wordsNotInEmbedding) throws IOException {		
 		//Console Output

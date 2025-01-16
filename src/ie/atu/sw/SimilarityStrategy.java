@@ -23,7 +23,7 @@ package ie.atu.sw;
  * @see SimilarityCalculationType
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */

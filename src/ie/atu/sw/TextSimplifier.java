@@ -16,23 +16,12 @@ import java.util.*;
  * <li>Supports batch processing of multiple lines of text.</li>
  * </ul>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * Map<String, float[]> embeddings = ...; // Load embeddings
- * Map<String, float[]> googleWords = ...; // Load Google-1000 words
- * SimilarityStrategy strategy = new CosineSimilarity();
- *
- * TextSimplifier simplifier = new TextSimplifier(embeddings, googleWords, strategy);
- * List<String> simplifiedText = simplifier.simplifyText(Arrays.asList("Some complex text"));
- * </pre>
- *
- *
  *
  *@see SimilarityStrategy
  *@see FileParser#getEmbeddings()
  *@see FileParser#getGoogleWords()
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */
@@ -55,7 +44,6 @@ public class TextSimplifier {
      * @param googleWordEmbeddings The Google-1000 embeddings map (word to vector).
      * @param similarityMeasure The strategy used to calculate word similarity.
      */
-	//constructor
 	public TextSimplifier(Map<String, float[]> embeddings, Map<String, float[]> googleWordEmbeddings,
 			SimilarityStrategy similarityMeasure) {
 		this.embeddings = embeddings;
@@ -154,7 +142,6 @@ public class TextSimplifier {
      *
      * @return The count of words simplified.
      */
-	// Getters for counters
     public int getWordsToSimplify() {
         return wordsToSimplify;
     }

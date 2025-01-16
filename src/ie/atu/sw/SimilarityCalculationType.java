@@ -14,13 +14,8 @@ package ie.atu.sw;
  * <li>{@link #MANHATTAN}: Manhattan distance similarity.</li>
  * </ul>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * SimilarityCalculationType type = SimilarityCalculationType.COSINE;
- * System.out.println(type.getDescription());
- * </pre>
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */

@@ -11,11 +11,7 @@ package ie.atu.sw;
  * similarity = sqrt(sum((vector1[i] - vector2[i])^2)) for all i
  * </pre>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * EuclideanDistanceSimilarity euclidean = new EuclideanDistanceSimilarity();
- * double score = euclidean.calculate(vector1, vector2);
- * </pre>
+ * 
  *
  * @see SimilarityStrategy
  * @see DotProductSimilarity

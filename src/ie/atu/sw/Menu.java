@@ -33,7 +33,7 @@ import java.util.Scanner;
  * @see HelpUtil#displayHelp()
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */
@@ -59,12 +59,11 @@ public class Menu {
 
 	}
 	/**
-     * Starts the main menu loop to interact with the user.
+     * Starts the main menu loop to interact with the user and handle user input.
      * <p>
      * Displays menu options, handles user input, and coordinates the text simplification process.
      * </p>
      */
-	// Main loop to display menu options and handle user input
 	public void start() {
 
 		while (keepRunning) {
@@ -121,12 +120,12 @@ public class Menu {
 		System.out.println();
 
 	}
+	
 	 /**
      * Retrieves user input for menu selection and ensures valid integer input.
      *
      * @return The menu option selected by the user.
      */
-	// Check to make sure integer selected
 	private int getUserInput() {
 		while (true) {
 			System.out.print("Pick a menu option: ");
@@ -140,20 +139,21 @@ public class Menu {
 			}
 		}
 	}
+	
+	// If user selected an integer greater than options available
 	/**
      * Handles invalid menu selections.
      */
-	// If user selected an integer greater than options available
 	private void selectionOutOfRange() {
 
 		MessageUtil.displayMessage("[Error] - Invalid selection", ConsoleColour.RED_BOLD);
 	}
+	
 	/**
      * Prompts the user to set file paths for required inputs.
      *
      * @param fileType The type of file to set (e.g., embeddings, Google 1000, text to simplify).
      */
-	// set file paths
 	private void setFilePath(String fileType) {
 
 		System.out.print("Enter path to " + fileType + " file: ");
@@ -189,10 +189,10 @@ public class Menu {
 
 		System.out.println();
 	}
+	
 	/**
      * Sets the output file path for results.
      */
-	// set results output file path
 	private void setOutputFilepath() {
 
 		System.out.print("Enter path for output file(default: ./out.txt): ");
@@ -200,10 +200,10 @@ public class Menu {
 
 		MessageUtil.displayMessage("[INFO] - Output filepath set sucessfully", ConsoleColour.BLUE_BOLD);
 	}
+	
 	/**
      * Displays the current file paths configured in the application.
      */
-	// Display current file paths
 	public void showCurrentFilePaths() {
 		System.out.println();
 		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************");
@@ -216,12 +216,33 @@ public class Menu {
 		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************"+ ConsoleColour.RESET);
 	}
 	
+	/**
+	 * Sets the output strategy for the text simplification results.
+	 * 
+	 * @param strategy The OutputStrategy implementation to use
+	 * @see OutputStrategy
+	 * @see FileAndConsoleOutput
+	 * @see JsonOutputStrategy
+	 */
 	public void setOutputStrategy(OutputStrategy strategy) {
 		this.outputStrategy = strategy;
 		MessageUtil.displayMessage("[INFO] Output strategy set to: " + strategy.getClass().getSimpleName(),
 				ConsoleColour.BLUE_BOLD);
 	}
-
+	/**
+	 * Allows user to select a similarity calculation strategy.
+	 * Provides options for:
+	 * <ul>
+	 * <li>Cosine Similarity</li>
+	 * <li>Dot Product Similarity</li>
+	 * <li>Euclidean Distance Similarity</li>
+	 * <li>Manhattan Distance Similarity</li>
+	 * </ul>
+	 * Defaults to Cosine Similarity if invalid selection.
+	 * 
+	 * @see SimilarityStrategy
+	 * @see CosineSimilarity
+	 */
 	private void selectCalculationStrategy() {
 		System.out.println();
 		System.out.println(ConsoleColour.GREEN_BOLD + """
@@ -249,7 +270,17 @@ public class Menu {
 		SimilarityCalculationType calculationType = calculationStrategy.getCalculationType();
 		MessageUtil.displayMessage("[INFO] Similarity Measure " + calculationType.getDescription() + " set successfully.", ConsoleColour.BLUE_BOLD);
 	}
-	
+	/**
+	 * Allows user to select an output strategy.
+	 * Provides options for:
+	 * <ul>
+	 * <li>File and Console Output</li>
+	 * <li>JSON Output</li>
+	 * </ul>
+	 * Defaults to File and Console Output if invalid selection.
+	 * 
+	 * @see OutputStrategy
+	 */
 	private void selectOutputStrategy() {
 	    System.out.println(ConsoleColour.GREEN_BOLD + """
 	        Select Output Strategy:
@@ -266,7 +297,18 @@ public class Menu {
 	    }
 	}
 
-
+	/**
+	 * Executes the text simplification process using configured settings.
+	 * <p>
+	 * Validates that all required files are loaded and a similarity measure
+	 * is selected before proceeding. Uses the selected output strategy to
+	 * display and save results.
+	 * </p>
+	 * 
+	 * @throws Exception if text simplification process fails
+	 * @see TextSimplifier
+	 * @see OutputStrategy
+	 */
 	private void executeTextSimplification() {
 		if (embeddingsFilePath == null || googleFilePath == null || textToSimplifyPath == null) {
 			MessageUtil.displayMessage("[ERROR] Ensure all required files are loaded before executing.",

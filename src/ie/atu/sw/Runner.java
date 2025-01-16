@@ -6,13 +6,6 @@ package ie.atu.sw;
  * This class initializes the application by invoking the {@link Menu#start()} method.
  * </p>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * public static void main(String[] args) {
- *     Menu menu = new Menu();
- *     menu.start();
- * }
- * </pre>
  *
  * <h2>Responsibilities:</h2>
  * <ul>

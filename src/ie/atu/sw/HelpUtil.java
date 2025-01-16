@@ -8,10 +8,6 @@ package ie.atu.sw;
  * This class outputs a detailed description of menu options and their functionalities.
  * </p>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * HelpUtil.displayHelp();
- * </pre>
  *
  * <h2>Output Details:</h2>
  * <ul>
@@ -24,7 +20,7 @@ package ie.atu.sw;
  * @see ConsoleColour
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */

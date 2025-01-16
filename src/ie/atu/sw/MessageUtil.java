@@ -13,7 +13,7 @@ package ie.atu.sw;
  *
  * @author Your Name
  * @version 1.0
- * @since 2024
+ * @since 1.8
  */
 public class MessageUtil {
 	
@@ -24,7 +24,6 @@ public class MessageUtil {
      * @param message the message to display
      * @param color   the color format from {@link ConsoleColour} to apply to the message
      */
-	//Displays a message with dynamic border and colour styling
 		public static void displayMessage(String message, ConsoleColour colour) {
 			
 			// Create a dynamic border based on message length
@@ -44,10 +43,11 @@ public class MessageUtil {
 			System.out.println(border + ConsoleColour.RESET);
 			System.out.println();
 		}
+		
 		/**
-	     * Creates a centered, padded header line with asterisks.
+	     * Creates a centered, padded header line with dashes.
 	     * <p>
-	     * This method is useful for creating visually distinct sections in the console output.
+	     * This method is useful for creating distinct sections in the console output.
 	     * </p>
 	     *
 	     * @param text the text to center and pad

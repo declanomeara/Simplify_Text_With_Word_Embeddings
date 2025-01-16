@@ -11,12 +11,6 @@ package ie.atu.sw;
  * similarity = sum(abs(vector1[i] - vector2[i])) for all i
  * </pre>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * ManhattanDistanceSimilarity manhattan = new ManhattanDistanceSimilarity();
- * double score = manhattan.calculate(vector1, vector2);
- * </pre>
- *
  *
  * @see SimilarityStrategy
  * @see DotProductSimilarity
@@ -26,7 +20,7 @@ package ie.atu.sw;
  *
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */

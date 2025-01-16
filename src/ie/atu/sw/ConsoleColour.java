@@ -124,9 +124,7 @@ public enum ConsoleColour {
 	public String colour() { 
 		return toString();
 	}
-	 /**
-     * Private constructor to prevent instantiation of this utility class.
-     */
+	 
 	@Override
     public String toString() {
         return CTRL_SEQ_INTRO + this.colour + CTRL_SEQ_END; 

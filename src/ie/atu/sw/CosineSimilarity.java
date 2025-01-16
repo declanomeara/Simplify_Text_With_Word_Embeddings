@@ -13,12 +13,7 @@ package ie.atu.sw;
  * similarity = dotProduct(vector1, vector2) / (||vector1|| * ||vector2||)
  * </pre>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * CosineSimilarity cosine = new CosineSimilarity();
- * double score = cosine.calculate(vector1, vector2);
- * </pre>
- *
+ * 
  * @see SimilarityStrategy
  * @see DotProductSimilarity
  * @see EuclideanDistanceSimilarity
@@ -26,7 +21,7 @@ package ie.atu.sw;
  * @see SimilarityCalculationType#COSINE
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  * 

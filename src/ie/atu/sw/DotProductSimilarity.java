@@ -1,7 +1,7 @@
 package ie.atu.sw;
 /**
  * The {@code DotProductSimilarity} class implements the {@link SimilarityStrategy} interface
- * to calculate similarity using the dot product.
+ * to calculate similarity using dot product.
  * <p>
  * Dot product measures the magnitude of projection of one vector onto another.
  * </p>
@@ -11,11 +11,6 @@ package ie.atu.sw;
  * similarity = sum(vector1[i] * vector2[i]) for all i
  * </pre>
  *
- * <h2>Usage Example:</h2>
- * <pre>
- * DotProductSimilarity dotProduct = new DotProductSimilarity();
- * double score = dotProduct.calculate(vector1, vector2);
- * </pre>
  *
  * @see SimilarityStrategy
  * @see DotProductSimilarity
@@ -24,7 +19,7 @@ package ie.atu.sw;
  * @see SimilarityCalculationType#DOT_PRODUCT
  *
  *
- * @author YourName
+ * @author Declan O'Meara
  * @version 1.0
  * @since 1.8
  */
