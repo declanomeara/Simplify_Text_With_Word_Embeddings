@@ -64,7 +64,7 @@ public class Menu {
      * Displays menu options, handles user input, and coordinates the text simplification process.
      * </p>
      */
-	public void start() {
+	public void start() {//Big-O Notation: O(1) - defined set of menu options
 
 		while (keepRunning) {
 			showMenuOptions();
@@ -94,7 +94,7 @@ public class Menu {
     /**
      * Displays the menu options to the user.
      */
-	private void showMenuOptions() {
+	private void showMenuOptions() {//Big-O Notation: O(1) - prints menu options to screen
 		System.out.println();
 		System.out.println(ConsoleColour.BLACK_BOLD + "************************************************************");
 		System.out.println("*     ATU - Dept. of Computer Science & Applied Physics    *");
@@ -126,7 +126,7 @@ public class Menu {
      *
      * @return The menu option selected by the user.
      */
-	private int getUserInput() {
+	private int getUserInput() {//Big-O Notation: O(1). Reading user input is a single operation
 		while (true) {
 			System.out.print("Pick a menu option: ");
 			String input = scanner.next().trim();
@@ -144,7 +144,7 @@ public class Menu {
 	/**
      * Handles invalid menu selections.
      */
-	private void selectionOutOfRange() {
+	private void selectionOutOfRange() {//Big-O Notation: O(1). Single operation
 
 		MessageUtil.displayMessage("[Error] - Invalid selection", ConsoleColour.RED_BOLD);
 	}
@@ -154,7 +154,7 @@ public class Menu {
      *
      * @param fileType The type of file to set (e.g., embeddings, Google 1000, text to simplify).
      */
-	private void setFilePath(String fileType) {
+	private void setFilePath(String fileType) {//Big-O Notation: O(1). Validating file existence and assigning it to a variable constant-time operations.
 
 		System.out.print("Enter path to " + fileType + " file: ");
 		String filePath = scanner.next().trim();
@@ -193,7 +193,7 @@ public class Menu {
 	/**
      * Sets the output file path for results.
      */
-	private void setOutputFilepath() {
+	private void setOutputFilepath() {//Big-O Notation: O(1).
 
 		System.out.print("Enter path for output file(default: ./out.txt): ");
 		outputFilePath = scanner.next().trim();
@@ -204,7 +204,7 @@ public class Menu {
 	/**
      * Displays the current file paths configured in the application.
      */
-	public void showCurrentFilePaths() {
+	public void showCurrentFilePaths() {//Big-O Notation: O(1). This is a constant-time operation because it kust prints out a set of filepaths 
 		System.out.println();
 		System.out.println(ConsoleColour.BLUE_BOLD + "************************************************************");
 		System.out.println("*                     Current File Paths                   *");
@@ -224,7 +224,7 @@ public class Menu {
 	 * @see FileAndConsoleOutput
 	 * @see JsonOutputStrategy
 	 */
-	public void setOutputStrategy(OutputStrategy strategy) {
+	public void setOutputStrategy(OutputStrategy strategy) {//Big-O Notation: O(1) constant time operation
 		this.outputStrategy = strategy;
 		MessageUtil.displayMessage("[INFO] Output strategy set to: " + strategy.getClass().getSimpleName(),
 				ConsoleColour.BLUE_BOLD);
@@ -243,7 +243,7 @@ public class Menu {
 	 * @see SimilarityStrategy
 	 * @see CosineSimilarity
 	 */
-	private void selectCalculationStrategy() {
+	private void selectCalculationStrategy() {//Big-O Notation: O(1) constant time operation
 		System.out.println();
 		System.out.println(ConsoleColour.GREEN_BOLD + """
 				Select Similarity Calculation Strategy:
@@ -281,7 +281,7 @@ public class Menu {
 	 * 
 	 * @see OutputStrategy
 	 */
-	private void selectOutputStrategy() {
+	private void selectOutputStrategy() {//Big-O Notation: O(1) constant time just prints some strings
 	    System.out.println(ConsoleColour.GREEN_BOLD + """
 	        Select Output Strategy:
 	        (1) File and Console Output
@@ -309,7 +309,7 @@ public class Menu {
 	 * @see TextSimplifier
 	 * @see OutputStrategy
 	 */
-	private void executeTextSimplification() {
+	private void executeTextSimplification() {//Big-O Notation: O(n) - loading, simplifying and outputting
 		if (embeddingsFilePath == null || googleFilePath == null || textToSimplifyPath == null) {
 			MessageUtil.displayMessage("[ERROR] Ensure all required files are loaded before executing.",
 					ConsoleColour.RED_BOLD);

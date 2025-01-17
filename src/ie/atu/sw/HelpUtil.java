@@ -48,7 +48,7 @@ public class HelpUtil {
      * <li><b>Quit:</b> Exits the application.</li>
      * </ul>
      */
-	public static void displayHelp() {
+	public static void displayHelp() {//Big-O Notation: O(1) only performs a fixed sequence of operations that do not depend on input size
 		
 		System.out.println();
 		System.out.println();

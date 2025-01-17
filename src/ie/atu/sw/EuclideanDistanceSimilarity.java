@@ -34,7 +34,7 @@ public class EuclideanDistanceSimilarity implements SimilarityStrategy {
      * @return A double representing the Euclidean distance.
      */
 	@Override
-	public double calculate(float[] vector1, float[] vector2) {
+	public double calculate(float[] vector1, float[] vector2) {//Big-O Notation: O(n) -  Iterates through the dimensions of the vectors once to compute the squared difference
 		double sum = 0.0;
 		for (int i = 0; i < vector1.length; i++) {
 			sum += Math.pow(vector1[i] - vector2[i], 2);
@@ -48,7 +48,7 @@ public class EuclideanDistanceSimilarity implements SimilarityStrategy {
      * @return {@link SimilarityCalculationType#EUCLIDEAN}.
      */
 	@Override
-	public SimilarityCalculationType getCalculationType() {
+	public SimilarityCalculationType getCalculationType() {//Big-O Notation: O(1) - A constant-time operation that returns a predefined value
 		return SimilarityCalculationType.EUCLIDEAN;
 	}
 

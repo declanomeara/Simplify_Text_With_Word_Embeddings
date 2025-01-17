@@ -43,7 +43,7 @@ public class JsonOutputStrategy implements OutputStrategy {
      */
     @Override
     public void outputResult(String inputText, String simplifiedText, SimilarityCalculationType similarityMethod,
-            int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeddings, String outputFilePath) {
+            int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeddings, String outputFilePath) {//Big-O Notation: O(1) complexity scales linearly with size of strings
          	
     	// Create JSON using StringBuilder
         StringBuilder jsonBuilder = new StringBuilder();

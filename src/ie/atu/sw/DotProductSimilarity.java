@@ -33,7 +33,7 @@ public class DotProductSimilarity implements SimilarityStrategy {
      * @return A double representing the dot product score.
      */
 	@Override
-    public double calculate(float[] vector1, float[] vector2) {
+    public double calculate(float[] vector1, float[] vector2) {//Big-O Notation: O(n) - Iterates through the vectors to compute the dot product
         double dotProduct = 0.0;
         
         for (int i = 0; i < vector1.length; i++) {
@@ -48,7 +48,7 @@ public class DotProductSimilarity implements SimilarityStrategy {
      * @return {@link SimilarityCalculationType#DOT_PRODUCT}.
      */
 	@Override
-	public SimilarityCalculationType getCalculationType() {
+	public SimilarityCalculationType getCalculationType() {//Big-O Notation: O(1) -Returns a constant value
 		return SimilarityCalculationType.DOT_PRODUCT;
 	}
 

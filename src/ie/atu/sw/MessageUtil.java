@@ -19,12 +19,12 @@ public class MessageUtil {
 	
 	
 	 /**
-     * Displays a message to the console with the specified color formatting.
+     * Displays a message to the console with the specified colour formatting.
      *
      * @param message the message to display
-     * @param color   the color format from {@link ConsoleColour} to apply to the message
+     * @param colour   the colour format from {@link ConsoleColour} to apply to the message
      */
-		public static void displayMessage(String message, ConsoleColour colour) {
+		public static void displayMessage(String message, ConsoleColour colour) {//Big-O Notation: O(n) - border scales linearly with the length of the message
 			
 			// Create a dynamic border based on message length
 			int borderLength = message.length() + 4; // 4 extra characters for padding
@@ -50,10 +50,10 @@ public class MessageUtil {
 	     * This method is useful for creating distinct sections in the console output.
 	     * </p>
 	     *
-	     * @param text the text to center and pad
+	     * @param header the text to center and pad
 	     * @return a string containing the padded header
 	     */
-		public static String paddingHeaderHelper(String header) {
+		public static String paddingHeaderHelper(String header) {//Big-O Notation: O(n) - padding scales linearly with the length of the header
 			
 			StringBuilder sb = new StringBuilder();
 			int borderLength = header.length() + 4; // 4 extra characters for padding

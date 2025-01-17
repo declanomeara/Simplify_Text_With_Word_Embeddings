@@ -36,7 +36,7 @@ public class CosineSimilarity implements SimilarityStrategy {
      * @return A double representing the cosine similarity score.
      */
 	@Override
-	public double calculate(float[] vector1, float[] vector2) {
+	public double calculate(float[] vector1, float[] vector2) {//Big-O Notation: O(n) - Iterates through the vectors to compute dot products and magnitudes.
 		// Calculate dot product first
 		double dotProduct = 0.0;
 		double normVector1 = 0.0;
@@ -57,7 +57,7 @@ public class CosineSimilarity implements SimilarityStrategy {
      * @return {@link SimilarityCalculationType#COSINE}.
      */
 	@Override
-	public SimilarityCalculationType getCalculationType() {
+	public SimilarityCalculationType getCalculationType() {//Big-O Notation: O(1) - Returns a constant value.
 		
 		return SimilarityCalculationType.COSINE;
 	}

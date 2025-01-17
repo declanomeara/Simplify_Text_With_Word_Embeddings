@@ -40,7 +40,7 @@ public enum SimilarityCalculationType {
      *
      * @return A string describing the similarity calculation type.
      */
-    public String getDescription() {
+    public String getDescription() {//Big-O Notation: O(1) gets the value constant time
         return description;
     }
 

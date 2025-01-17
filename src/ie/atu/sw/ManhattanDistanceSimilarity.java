@@ -37,7 +37,7 @@ public class ManhattanDistanceSimilarity implements SimilarityStrategy {
 	public double calculate(float[] vector1, float[] vector2) {
 		double sum = 0;
 		
-		for (int i = 0; i < vector1.length; i++) {
+		for (int i = 0; i < vector1.length; i++) {//Big-O Notation: O(n). The method iterates through the dimensions of the two vectors to compute the Manhattan distance
             sum += Math.abs(vector1[i] - vector2[i]);
         }
 
@@ -49,7 +49,7 @@ public class ManhattanDistanceSimilarity implements SimilarityStrategy {
      * @return {@link SimilarityCalculationType#MANHATTAN}.
      */
 	@Override
-	public SimilarityCalculationType getCalculationType() {
+	public SimilarityCalculationType getCalculationType() {//Big-O Notation: O(1) it simply gets the calculation type
 		return SimilarityCalculationType.MANHATTAN;
 	}
 	

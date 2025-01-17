@@ -65,7 +65,7 @@ public class FileParser {
      * @param filePath The path to the word embeddings file.
      * @throws RuntimeException If an error occurs while reading the file.
      */
-	public void loadEmbeddingsFile(String filePath) {
+	public void loadEmbeddingsFile(String filePath) {//Big-O Notation: O(n) - Reads the embeddings file line by line. The processing of each line is independent, resulting in linear time complexity
 
 		// Counter to track the number of processed lines
 		AtomicInteger lineCount = new AtomicInteger(0);
@@ -109,7 +109,7 @@ public class FileParser {
      * @param lineCount Counter for processed lines.
      * @param duplicates Counter for duplicate entries.
      */
-		private void processLine(String line, AtomicInteger lineCount, AtomicInteger duplicates) {
+		private void processLine(String line, AtomicInteger lineCount, AtomicInteger duplicates) {//Big-O Notation: O(n) processes a single line of the embeddings file, splitting it into components and parsing the vector.
 			// Split the line into components: the word and its vector
 			String[] parts = line.trim().split(",");
 			String word = parts[0]; // The word is the first part
@@ -142,7 +142,7 @@ public class FileParser {
 	     * @param filePath The path to the Google-1000 words file.
 	     * @throws RuntimeException If an error occurs while reading the file.
 	     */
-	public void loadGoogleWordsFile(String filePath) {
+	public void loadGoogleWordsFile(String filePath) {//Big-O Notation: O(n) - Reads the file line by line and processes each word once
 		
 		try (var reader = Files.newBufferedReader(Path.of(filePath))) {
 			String line;
@@ -170,7 +170,7 @@ public class FileParser {
      * @return A list of lines from the file.
      * @throws RuntimeException If an error occurs while reading the file.
      */
-	public List<String> loadTextToSimplify(String filePath) {
+	public List<String> loadTextToSimplify(String filePath) {//Big-O Notation: O(n) -Reads the text file line by line. Each line is added to a list, which is a linear operation.
 	   this.textToSimplify.clear();
 
 	    try (var reader = Files.newBufferedReader(Path.of(filePath))) {
@@ -194,7 +194,7 @@ public class FileParser {
      *
      * @return A map of words to their vector embeddings.
      */
-	public ConcurrentHashMap<String, float[]> getEmbeddings() {
+	public ConcurrentHashMap<String, float[]> getEmbeddings() {//Big-O Notation: O(1) - Retrieving stored Data
 		return this.embeddings;
 	}
 	/**
@@ -202,7 +202,7 @@ public class FileParser {
      *
      * @return A map of Google-1000 words to their vector embeddings.
      */
-	public Map<String, float[]> getGoogleWords() {
+	public Map<String, float[]> getGoogleWords() {//Big-O Notation: O(1) - Retrieving stored Data
 		return this.googleWordEmbeddings;
 	}
 	
@@ -211,7 +211,7 @@ public class FileParser {
      *
      * @return A list of lines from the input text file.
      */
-	public List<String> getTextToSimpify() {
+	public List<String> getTextToSimpify() {//Big-O Notation: O(1) - Retrieving stored Data
 		return this.textToSimplify;
 	}
 

@@ -40,7 +40,7 @@ public class FileAndConsoleOutput implements OutputStrategy {
      */
 	@Override
 	public void outputResult(String inputText, String simplifiedText, SimilarityCalculationType similarityMethod,
-			int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeding, String outputFilePath) {
+			int wordsToSimplify, int wordsInGoogle1000, int wordsNotInEmbeding, String outputFilePath) {//Big-O Notation: O(n) Processes strings and writes them to a file line by line
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
 
@@ -84,7 +84,7 @@ public class FileAndConsoleOutput implements OutputStrategy {
      * @param similarityMethod  The similarity method used
      * @throws IOException if there's an error writing to file
      */
-	private void printConsoleAndFileHeader(BufferedWriter bw, SimilarityCalculationType similarityMethod) throws IOException {
+	private void printConsoleAndFileHeader(BufferedWriter bw, SimilarityCalculationType similarityMethod) throws IOException {//Big-O Notation: O(n) - scales with size of strings
 		
 		// Console output
 		MessageUtil.displayMessage("Simplified Text using " + similarityMethod.getDescription(), ConsoleColour.GREEN);
@@ -108,7 +108,7 @@ public class FileAndConsoleOutput implements OutputStrategy {
      * @throws IOException if there's an error writing to file
      */
 	private void printProcessingSummary(BufferedWriter bw, int wordsToSimplify, int wordsInGoogle1000,
-			int wordsNotInEmbedding) throws IOException {		
+			int wordsNotInEmbedding) throws IOException {//Big-O Notation: O(1)	- Processes and outputs a fixed number of summary items.
 		//Console Output
 		MessageUtil.displayMessage("Processing Summary", ConsoleColour.GREEN);
 		

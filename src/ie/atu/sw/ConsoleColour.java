@@ -112,21 +112,21 @@ public enum ConsoleColour {
 	private final String description;
 	private final String colour;
 	
-	ConsoleColour(String description, String colour) {
+	ConsoleColour(String description, String colour) {//Big-O Notation: O(1) constant time
 		this.description = description;
 		this.colour = colour;
 	}
 	
-	public String description() { 
+	public String description() { //Big-O Notation: O(1) constant time
 		return this.description; 
 	}
 
-	public String colour() { 
+	public String colour() { //Big-O Notation: O(1) constant time
 		return toString();
 	}
 	 
 	@Override
-    public String toString() {
+    public String toString() {//Big-O Notation: O(1) constant time
         return CTRL_SEQ_INTRO + this.colour + CTRL_SEQ_END; 
     }
 }

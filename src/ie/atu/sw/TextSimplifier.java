@@ -65,7 +65,7 @@ public class TextSimplifier {
      * @param line The input line of text to simplify.
      * @return A simplified version of the input line.
      */
-	public String simplifyLine(String line) {
+	public String simplifyLine(String line) {//Big-O Notation: O(n) The method iterates through each word in the input line to simplify it.
 		String[] inputWords = line.split("\\s+");
 		
 		StringBuilder simplifiedLine = new StringBuilder();
@@ -99,7 +99,7 @@ public class TextSimplifier {
      * @param targetWord The word to simplify.
      * @return The closest match from the Google-1000 word list.
      */
-	private String findClosestWord(String targetWord) {
+	private String findClosestWord(String targetWord) {//Big-O Notation: O(n)  The method iterates through a set of possible matches to calculate similarity scores and find the closest match
         float[] targetVector = embeddings.get(targetWord); // Get the vector of the target word
         double maxSimilarity = Double.NEGATIVE_INFINITY; // set to most minimum number to start
         String closestWord = null;
@@ -124,7 +124,7 @@ public class TextSimplifier {
      * @param textLines A list of text lines to simplify.
      * @return A list of simplified text lines.
      */
-	public List<String> simplifyText(List<String> textLines) {
+	public List<String> simplifyText(List<String> textLines) {//Big-O Notation: O(n).Iterating through a list.
 		// Reset counters for each new simplification
         wordsToSimplify = 0;
         wordsInGoogle1000 = 0;
@@ -142,7 +142,7 @@ public class TextSimplifier {
      *
      * @return The count of words simplified.
      */
-    public int getWordsToSimplify() {
+    public int getWordsToSimplify() {//Big-O Notation: O(1) retrieving counters
         return wordsToSimplify;
     }
     /**
@@ -150,7 +150,7 @@ public class TextSimplifier {
      *
      * @return The count of words in Google-1000.
      */
-    public int getWordsInGoogle1000() {
+    public int getWordsInGoogle1000() {//Big-O Notation: O(1) retrieving counters
         return wordsInGoogle1000;
     }
     /**
@@ -158,7 +158,7 @@ public class TextSimplifier {
      *
      * @return The count of words missing in the embeddings.
      */
-    public int getWordsNotInEmbeddings() {
+    public int getWordsNotInEmbeddings() {//Big-O Notation: O(1) retrieving counters
         return wordsNotInEmbeddings;
     }
 	
