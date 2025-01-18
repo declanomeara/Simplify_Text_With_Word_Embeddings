@@ -40,6 +40,8 @@ public class JsonOutputStrategy implements OutputStrategy {
      * @param wordsInGoogle1000  The number of words already present in the Google-1000 dataset.
      * @param wordsNotInEmbeddings The number of words not found in the embeddings file.
      * @param outputFilePath     The file path where the JSON output should be saved.
+     * 
+     * 
      */
     @Override
     public void outputResult(String inputText, String simplifiedText, SimilarityCalculationType similarityMethod,

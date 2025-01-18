@@ -31,7 +31,7 @@ public class ManhattanDistanceSimilarity implements SimilarityStrategy {
      *
      * @param vector1 The first vector.
      * @param vector2 The second vector.
-     * @return A double representing the Manhattan distance (negative for consistency).
+     * @return A double representing the Manhattan distance.
      */
 	@Override
 	public double calculate(float[] vector1, float[] vector2) {

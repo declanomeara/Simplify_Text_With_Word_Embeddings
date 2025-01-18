@@ -34,7 +34,7 @@ public class HelpUtil {
      * in the main menu.
      * </p>
      *
-     * <h2>Menu Options:</h2>
+     * <p>Menu Options:</p>
      * <ul>
      * <li><b>Specify Embedding File:</b> Sets the file path for the word embeddings file.</li>
      * <li><b>Specify Google-1000 Words File:</b> Sets the file path for the Google-1000 words file.</li>

@@ -116,11 +116,17 @@ public enum ConsoleColour {
 		this.description = description;
 		this.colour = colour;
 	}
-	
+	/**
+	 * Retrieves the description of the color style.
+	 * @return A string describing the color.
+	 */
 	public String description() { //Big-O Notation: O(1) constant time
 		return this.description; 
 	}
-
+	/**
+	 * Retrieves the colour. 
+	 * @return A string describing the colour.
+	 */
 	public String colour() { //Big-O Notation: O(1) constant time
 		return toString();
 	}

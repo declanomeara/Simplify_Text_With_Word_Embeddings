@@ -141,6 +141,7 @@ public class Menu {
 	}
 	
 	// If user selected an integer greater than options available
+	
 	/**
      * Handles invalid menu selections.
      */
@@ -305,7 +306,7 @@ public class Menu {
 	 * display and save results.
 	 * </p>
 	 * 
-	 * @throws Exception if text simplification process fails
+	 * 
 	 * @see TextSimplifier
 	 * @see OutputStrategy
 	 */

@@ -11,7 +11,7 @@ package ie.atu.sw;
  * @see HelpUtil
  *
  *
- * @author Your Name
+ * @author Declan O'Meara
  * @version 1.0
  * @since 21
  */
